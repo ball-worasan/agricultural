@@ -1,7 +1,10 @@
 <?php
+// แยกไฟล์ออกมาเพื่อให้อ่านโค้ดได้ง่าย และ สามารถแก้ไขไฟล์ได้ตรงจุดนี้โดยไม่กระทบไฟล์อื่น 
+// และไม่ให้โค้ดยาวเกินไปใน index.php
 
 declare(strict_types=1);
 
+// ป้องกันเว็บดับถ้าเกิด fatal error
 require_once __DIR__ . '/../app/includes/crash_shield.php';
 
 $ctx = require __DIR__ . '/../app/bootstrap/bootstrap.php';
@@ -30,18 +33,23 @@ $normalizeAssets = static function (array $assets): array {
 };
 
 $baseCss = [
+  // เก็บสีหน้าตา ไว้ที่นี่ไฟล์เดียว
   '/css/variables.css',
+  // พื้นฐานทั่วเว็บ
   '/css/base.css',
+  // navbar
   '/css/navbar.css',
 ];
 
 $baseJs = [
+  // ตัวจัดการ เพิ่มลูกเล่นของแต่ละ component
   '/js/app.core.js',
   '/js/app.flash.js',
   '/js/app.navbar.js',
   '/js/app.js',
 ];
 
+// Normalize + dedupe
 $pageCss = $normalizeAssets($pageCss);
 $pageJs  = $normalizeAssets($pageJs);
 
