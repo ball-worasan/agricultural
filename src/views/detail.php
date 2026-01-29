@@ -7,7 +7,6 @@ $id = (int)($_GET['id'] ?? 0);
 
 // ถ้า ID ไม่ถูกต้อง ให้รีไดเรกต์กลับไปหน้าโฮม
 if ($id <= 0) {
-  if (function_exists('flash')) flash('error', 'ไม่พบข้อมูลพื้นที่');
   header('Location: ?page=home');
   exit;
 }
@@ -26,7 +25,6 @@ try {
 
   // ถ้าไม่พบข้อมูล ให้รีไดเรกต์กลับไปหน้าโฮม
   if (!$item) {
-    if (function_exists('flash')) flash('error', 'ไม่พบข้อมูลพื้นที่');
     header('Location: ?page=home');
     exit;
   }
